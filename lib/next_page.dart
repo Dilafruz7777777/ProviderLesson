@@ -31,6 +31,9 @@ class _NextPageState extends State<NextPage> {
               '${context.watch<AppController>().count}',
               style: Theme.of(context).textTheme.headline4,
             ),
+
+
+
           ],
         ),
       ),

@@ -31,6 +31,8 @@ class _HomePageState extends State<HomePage> {
               '${context.watch<AppController>().count}',
               style: Theme.of(context).textTheme.headline4,
             ),
+
+
           ],
         ),
       ),
