@@ -19,7 +19,6 @@ class MyApp extends StatelessWidget {
 
       providers: [
         ChangeNotifierProvider(create: (context) => AppController()),
-        ChangeNotifierProvider(create: (context) => TwoController()),
 
       ],
       child: MaterialApp(

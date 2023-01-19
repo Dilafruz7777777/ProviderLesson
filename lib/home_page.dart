@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import 'OnePage.dart';
 import 'controller.dart';
 import 'next_page.dart';
 
@@ -14,47 +15,31 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  List<Widget> list = [
+    NextPage(title: "Next Page"),
+    OnePage(title: "One Page")
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '${context.watch<AppController>().count}',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-
-
-          ],
-        ),
+      body: IndexedStack(
+        index: context.watch<AppController>().currentIndex,
+        children: list,
       ),
-      floatingActionButton: Row(
-        children: [
-          FloatingActionButton(
-            onPressed: () {
-              Navigator.of(context).push(MaterialPageRoute(
-                  builder: (_) => NextPage(title: "Next Page")));
-            },
-            tooltip: 'Increment',
-            child: const Icon(Icons.ac_unit),
-          ),
-          FloatingActionButton(
-            onPressed: () {
-              context.read<AppController>().addCount();
-            },
-            tooltip: 'Increment',
-            child: const Icon(Icons.add),
-          ),
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: context.watch<AppController>().currentIndex,
+        onTap: (value) {
+          context.read<AppController>().setIndex(value);
+        },
+        items: [
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: ""),
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: ""),
         ],
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      ),
     );
   }
 }
