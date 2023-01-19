@@ -6,6 +6,8 @@ class AppController extends ChangeNotifier{
   String name = "";
   int currentIndex = 0;
 
+  int CountChange = 0;
+
   setName(String name1){
     name = name1;
     notifyListeners();
@@ -13,6 +15,11 @@ class AppController extends ChangeNotifier{
 
   setIndex(int index){
     currentIndex = index;
+    notifyListeners();
+  }
+
+  addCountChange(){
+    CountChange++;
     notifyListeners();
   }
 

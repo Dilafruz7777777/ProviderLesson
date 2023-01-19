@@ -40,6 +40,7 @@ class _OnePageState extends State<OnePage> {
       floatingActionButton: FloatingActionButton(
         onPressed: (){
           context.read<AppController>().setName(controller.text);
+          context.read<AppController>().addCountChange();
         },
         tooltip: 'Increment',
         child: const Icon(Icons.add),

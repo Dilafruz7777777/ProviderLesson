@@ -36,7 +36,28 @@ class _HomePageState extends State<HomePage> {
           context.read<AppController>().setIndex(value);
         },
         items: [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: ""),
+          BottomNavigationBarItem(
+              icon: Stack(
+                children: [
+                  Icon(Icons.home),
+                  Positioned(
+                    top: -5,
+                    right: 0,
+                    child: Container(
+                      decoration: BoxDecoration(
+                          color: Colors.red
+
+                          , shape: BoxShape.circle),
+                      padding: EdgeInsets.all(4),
+                      child: Text(
+                        context.watch<AppController>().CountChange.toString(),
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ),
+                  )
+                ],
+              ),
+              label: ""),
           BottomNavigationBarItem(icon: Icon(Icons.person), label: ""),
         ],
       ),
