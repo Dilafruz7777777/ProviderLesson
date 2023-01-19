@@ -24,10 +24,12 @@ class _NextPageState extends State<NextPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             const Text(
+
               'Name: ',
+
             ),
             Text(
-              '${context.watch<AppController>().count}',
+              context.watch<AppController>().name,
               style: Theme.of(context).textTheme.headline4,
             ),
           ],

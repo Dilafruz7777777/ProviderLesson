@@ -3,6 +3,9 @@ import 'package:provider/provider.dart';
 
 import 'controller.dart';
 
+
+
+
 class OnePage extends StatefulWidget {
   const OnePage({super.key, required this.title});
 
@@ -13,7 +16,7 @@ class OnePage extends StatefulWidget {
 }
 
 class _OnePageState extends State<OnePage> {
-
+  TextEditingController controller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -24,15 +27,19 @@ class _OnePageState extends State<OnePage> {
           children: <Widget>[
             Padding(
               padding: const EdgeInsets.all(32.0),
-              child: TextFormField(),
+              child: TextFormField(
+                controller: controller,
+                onEditingComplete: (){
+                  context.read<AppController>().setName(controller.text);
+                },
+              ),
             ),
-
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: (){
-          context.read<AppController>().addCount();
+          context.read<AppController>().setName(controller.text);
         },
         tooltip: 'Increment',
         child: const Icon(Icons.add),
